@@ -1,0 +1,9 @@
+number1=20
+number2=21
+number=20
+car1='Audi'
+car='audi'
+print(number1==number2)
+print(number==number1)
+print(car1==car)
+print(car1==car.title())
