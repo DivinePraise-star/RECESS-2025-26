@@ -112,3 +112,43 @@ class Car:
 my_car = Car("Toyota", "Corolla")
 print(my_car.make)  # Output: Toyota
 print(my_car.model)  # Output: Corolla
+
+#Exercise
+#Create a program with a class called student, that takes in all the stundent`s details like name, age, class, year, id,etc and prints out all the deatils
+
+class Student:
+    def __init__(self, name, age, student_class, year, student_id, nextofkin, dateofbirth):
+        self.name = name
+        self.age = age
+        self.student_class = student_class
+        self.year = year
+        self.student_id = student_id
+        self.nextofkin = nextofkin
+        self.dateofbirth = dateofbirth  
+
+    def print_details(self):
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Class: {self.student_class}")
+        print(f"Year: {self.year}")
+        print(f"ID: {self.student_id}")
+        print(f"Next of Kin: {self.nextofkin}")
+        print(f"Date of Birth: {self.dateofbirth}") 
+
+# Creating an instance of the Student class
+student1 = Student("John Doe", 20, "Computer Science", 2024, "12345", "Jane Doe", "01/01/2004")
+#OR
+# student1 = Student(name="John Doe", age=20, student_class="Computer Science", year=2024, student_id="12345", nextofkin="Jane Doe", dateofbirth="01/01/2004")  
+#OR
+print("Enter student details:")
+name = input("Name: ")  
+age = int(input("Age: "))
+student_class = input("Class: ")
+year = int(input("Year: "))
+student_id = input("ID: ")
+nextofkin = input("Next of Kin: ")
+dateofbirth = input("Date of Birth (DD/MM/YYYY): ")
+
+student1 = Student(name, age, student_class, year, student_id, nextofkin, dateofbirth)
+# Printing the details of the student
+student1.print_details()
