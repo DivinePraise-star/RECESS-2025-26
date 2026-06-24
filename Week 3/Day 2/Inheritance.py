@@ -95,3 +95,5 @@ teacher.getDetails()  # Calls the overridden method in Teacher class
 
 employee = Employee(input("Enter your name: "), int(input("Enter your age: ")), input("Enter your job title: "), float(input("Enter your salary: ")))
 employee.getDetails()  # Calls the overridden method in Employee class
+
+print("Method Resolution Order (MRO) for Teacher class:", Teacher.__mro__)  # Displays the MRO for Teacher class

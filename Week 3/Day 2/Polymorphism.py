@@ -14,7 +14,14 @@
 #Syntax of Method Overloading in Python
 class Example:
     def add(self, a, b=0):
-        return a + b
+        if isinstance(a, int) and isinstance(b, int):  #checks data type
+          return a + b
+        
+        elif isinstance(a, float) and isinstance(b. int):
+            return float(a)+b
+        
+        else:
+            return b+0
     
     def add(self, a, b, c=0):
         return a + b + c
@@ -27,6 +34,8 @@ print(Example().add(1, 2, 3))     # Output: 6
 print(Example().add(1, 2, 3, 4))  # Output: 10
 
 #Example of Method Overloading in Python
+
+#Approach 1: Using default parameters
 class Calculator:
     def add(self, a, b=0):
         return a + b
@@ -37,6 +46,21 @@ class Calculator:
 print(Calculator().add(5, 10))        # Output: 15
 print(Calculator().add(5, 10, 15))    # Output: 30  
 
+#Approach 2: Variable length arguments
+class Calc:
+    def add(self, *args):
+        if len(args)==2:
+            return args[0]+args[1]
+        
+        elif len(args)==3:
+            return args[0]+args[1]+args[2]
+        
+        else:
+            return 0
+        
+print(Calc().add(1, 2))        # Output: 3
+print(Calc().add(1, 2, 3))     # Output: 6          
+        
 #Method Overriding
 #Method overriding allows a subclass to provide a specific implementation of a method that is already defined in its superclass.
 
@@ -79,6 +103,9 @@ class Account:
         self.balance -= amount
         return f"Withdrew {amount}. New balance: {self.balance}"
     
+    def getAccountDetails(self):
+        return f"Account Number: {self.account_number}, Balance: {self.balance}"
+    
 class SavingsAccount(Account):
     def withdraw(self, amount):
         if amount > self.balance:
@@ -96,18 +123,70 @@ class CheckingAccount(Account):
 account1 = SavingsAccount("SA123", 1000)
 account2 = CheckingAccount("CA456", 500)    
 
-account1.deposit(200)  # Output: Deposited 200. New balance: 1200
-account1.withdraw(300)  # Output: Withdrew 300 from Savings Account. New balance: 900
-account2.deposit(100)  # Output: Deposited 100. New balance: 600
-account2.withdraw(700)  # Output: Insufficient funds in Checking Account    
+print(account1.deposit(200))  # Output: Deposited 200. New balance: 1200
+print(account1.withdraw(300))  # Output: Withdrew 300 from Savings Account. New balance: 900
+print(account2.deposit(100))  # Output: Deposited 100. New balance: 600
+print(account2.withdraw(700))  # Output: Insufficient funds in Checking Account    
 
-#OR
-account1 = SavingsAccount(input("Enter Savings Account Number: "), float(input("Enter Initial Balance for Savings Account: ")))
-account2 = CheckingAccount(input("Enter Checking Account Number: "), float(input("Enter Initial Balance for Checking Account: ")))  
+print(account1.getAccountDetails())  # Output: Account Number: SA123, Balance: 900
+print(account2.getAccountDetails())  # Output: Account Number: CA456, Balance: 600     
 
-account1.deposit(float(input("Enter amount to deposit in Savings Account: ")))
-account1.withdraw(float(input("Enter amount to withdraw from Savings Account: ")))
-account2.deposit(float(input("Enter amount to deposit in Checking Account: ")))
-account2.withdraw(float(input("Enter amount to withdraw from Checking Account: ")))
-  
 
+#Parameter overloading is a form of polymorphism that allows a method to have different behaviors based on the number or type of parameters passed to it.   
+
+#Operator overloading is another form of polymorphism that allows operators to have different behaviors based on the types of operands they are applied to. 
+#common special methods:
+__add__(self, others)
+__sub__(self, others)
+__mul__(self, others)
+__truediv__(self, others)
+__str__(self)
+
+#Example of Operator Overloading in Python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+    def __str__(self):
+        return f"Point({self.x}, {self.y})"
+    
+point = Point(1, 2)
+print(point)  # Output: Point(1, 2)
+print(point + Point(3, 4))  # Output: Point(4, 6)   
+
+class Money:
+    def __init__(self, amount, currency='ugx'):
+        self.amount = amount
+        self.currency = currency
+
+    def __add__(self, other):
+        if self.currency == other.currency:
+            return Money(self.amount + other.amount, self.currency)
+        else:
+            raise ValueError("Currencies must match")
+        
+    def __sub__(self, other):
+        if self.currency == other.currency:
+            return Money(self.amount - other.amount, self.currency)
+        else:
+            raise ValueError("Currencies must match")
+
+    def __mul__(self, other):
+        if isinstance(other, (int, float)):
+            return Money(self.amount * other, self.currency)
+        else:
+            raise ValueError("Can only multiply by a number")        
+
+    def __str__(self):
+        return f"{self.amount} {self.currency}"
+    
+money1 = Money(100, 'ugx')
+money2 = Money(200, 'ugx')  
+
+print(money1 + money2)  # Output: 300 ugx
+print(money2 - money1)  # Output: 100 ugx   
+print(money1 * 2)  # Output: 200 ugx
