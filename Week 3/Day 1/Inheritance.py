@@ -16,6 +16,9 @@
 # class ChildClass(ParentClass):
     # Child class attributes and methods
 
+#super() function: The super() function is used to call methods from the parent class in the child class.
+#MRO is method resolution order. It is the order in which Python looks for a method in a hierarchy of classes.S
+
 #In Python, we can define a parent class and a child class as follows:
 
 class Parent:
@@ -46,6 +49,7 @@ Name.greet()  # Method from Parent class
 #Multiple Inheritance
 #Multiple inheritance is a feature in OOP where a child class can inherit from more than one parent class. 
 # This allows the child class to combine behaviors and attributes from multiple parent classes. 
+
 #Example of multiple inheritance
 class Person:
     def __init__(self, name, age):
@@ -59,13 +63,35 @@ class Student(Person):
     def __init__(self, name, age, student_id, class_name):
         super().__init__(name, age)
         self.student_id = student_id
-        self.class_name = class_name    
-    
+        self.class_name = class_name 
+
     def getDetails(self):
-        print(f"Hello, I am {self.name}, aged {self.age} years, and I am a student with ID {self.student_id} in class {self.class_name}.")  
+        print(f"Hello, I am {self.name}, aged {self.age} years, and I am a student with ID {self.student_id} in class {self.class_name}.")
 
-name = Student(input("Enter your name: "), int(input("Enter your age: ")), input("Enter your student ID: "), input("Enter your class name: "))
-name.getDetails()  # Calls the overridden method in Student class
+class Employee(Person):
+    def __init__(self, name, age, job_title, salary):
+        super().__init__(name, age)
+        self.job_title = job_title
+        self.salary = salary
 
-name = Person(input("Enter your name: "), int(input("Enter your age: ")))
-name.getDetails()  # Calls the method in Person class   
+    def getDetails(self):
+        print(f"Hello, I am {self.name}, aged {self.age} years, and I work as a {self.job_title} earning ${self.salary}.")
+class Teacher(Employee):
+    def __init__(self, name, age, subject):
+        super().__init__(name, age, "Teacher", 0)
+        self.subject = subject
+
+    def getDetails(self):
+        print(f"Hello, I am {self.name}, aged {self.age} years, and I am a teacher of {self.subject}.")  
+
+student = Student(input("Enter your name: "), int(input("Enter your age: ")), input("Enter your student ID: "), input("Enter your class name: "))
+student.getDetails()  # Calls the overridden method in Student class
+
+person = Person(input("Enter your name: "), int(input("Enter your age: ")))
+person.getDetails()  # Calls the method in Person class   
+
+teacher = Teacher(input("Enter your name: "), int(input("Enter your age: ")), input("Enter the subject you teach: "))
+teacher.getDetails()  # Calls the overridden method in Teacher class
+
+employee = Employee(input("Enter your name: "), int(input("Enter your age: ")), input("Enter your job title: "), float(input("Enter your salary: ")))
+employee.getDetails()  # Calls the overridden method in Employee class
