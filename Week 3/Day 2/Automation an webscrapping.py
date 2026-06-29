@@ -51,3 +51,44 @@
 #2. BeautifulSoup: For parsing HTML and XML documents and extracting data.
 #3. Selenium: For browser automation and interacting with dynamic web content.
 
+#Sceduled Scripts in python
+#1. Identify the task to be scheduled.
+#2. Create a script to perform the task.
+#3. Use a scheduling library like schedule or APScheduler to define the schedule for running the script.
+
+#Example of a simple scheduled script using the schedule library:
+import schedule
+
+import time
+
+def job():
+    print("Running scheduled task...")  
+
+# Schedule the job to run every day at a specific time (e.g., 10:00 AM)
+schedule.every().day.at("10:00").do(job)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+
+#Web scraping:
+#Data Extraction
+#Data extraction is the process of retrieving specific information from various sources, such as websites, databases, or documents. 
+#
+#How to extract data from a website using Python:
+#1. Identify the target website and the data to be extracted.
+#2. Make an HTTP request to the website and retrieve the HTML content using the requests library.
+#3. Parse the HTML content using a library like BeautifulSoup.
+
+#syntax for extracting data using BeautifulSoup:
+from bs4 import BeautifulSoup
+
+#Example of extracting data from a website using BeautifulSoup:
+import requests
+import BeautifulSoup
+
+
+
+#Automated Reports
+#in Python, you can automate the generation of reports by combining data extraction, data processing, and report formatting.    
+

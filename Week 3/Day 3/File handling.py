@@ -221,3 +221,31 @@ with open('data.json', 'w') as file:
     json.dump(People, file)
 
 print('Data saved to data.json successfully.')    
+
+#Data Serialization: We can use the pickle module in Python to serialize and deserialize Python objects. 
+# This allows us to easily save and load complex data structures such as lists, dictionaries, and custom objects.
+# 
+# How to use pickle module:
+# Syntax:
+# import pickle
+# # Saving an object to a file:
+# with open('filename.pkl', 'wb') as file:
+#   pickle.dump(object, file)
+# # # Loading an object from a file:
+# with open('filename.pkl', 'rb') as file:    
+#     object = pickle.load(file)
+
+#Example of using pickle module:
+import pickle
+
+data = {'name': 'John', 'age': 30, 'city': 'New York'}
+
+# Saving data to a file
+with open('data.pkl', 'wb') as file:
+    pickle.dump(data, file)
+
+# Loading data from a file
+with open('data.pkl', 'rb') as file:
+    loaded_data = pickle.load(file)
+
+print(loaded_data)
