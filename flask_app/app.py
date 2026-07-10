@@ -45,10 +45,6 @@ def contact():
 def user_profile(username):
     return f"<h1>User Profile</h1><p>Welcome, {username}!</p>"
 
-from flask import Flask, render_template
-
-app = Flask(__name__)
-
 # Exe 2: Create a Dynamic Route on myStory to display your myStory
 @app.route('/myStory/<story_id>')
 def my_story(story_id):
