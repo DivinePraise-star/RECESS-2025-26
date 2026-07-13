@@ -1,0 +1,8 @@
+#code for deleting a student record
+
+<h2>Delete Student Record</h2>
+<p>Are you sure you want to delete the record for <strong>{{ student.student_name }}</strong>?</p>
+<form method="POST" action="{{ url_for('delete_student', registration_number=student.registration_number) }}" class="delete-form">
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="{{ url_for('students_list') }}" class="btn btn-secondary">Cancel</a>
+</form>

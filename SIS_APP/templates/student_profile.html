@@ -1,0 +1,29 @@
+<!-- code to view student profile -->
+
+{% extends "base.html" %}
+
+{% block title %}Student Profile - Student Information System{% endblock %}
+
+{% block content %}
+    <section class="student-profile-page">
+<h2>Student Profile</h2>
+<div class="student-info">
+    <p><strong>Name:</strong> {{ student.student_name }}</p>
+    <p><strong>Registration Number:</strong> {{ student.registration_number }}</p>
+    <p><strong>Email:</strong> {{ student.email }}</p>
+    <p><strong>Programme:</strong> {{ student.programme }}</p>
+    <p><strong>Registration Date:</strong> {{ student.registration_date.strftime('%Y-%m-%d') }}</p>
+</div>
+
+{% if student %}
+    <div class="profile-actions">
+        <a href="{{ url_for('edit_student', student_name=student.student_name) }}" class="btn btn-primary">Edit Profile</a>
+        <form action="{{ url_for('delete_student', student_name=student.student_name) }}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-danger">Delete Profile</button>
+        </form>
+    </div>
+{% else %}
+    <p>Student not found.</p>
+{% endif %}
+    </section>
+{% endblock %}

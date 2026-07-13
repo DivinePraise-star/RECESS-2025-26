@@ -1,0 +1,2 @@
+# This is a fike that contains the system we built during the afternoon class by mr jeff from scratch usind flask
+#The si=ysytem is called Students Information system (SIS_APP) in folder SIS_APP.
