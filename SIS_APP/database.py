@@ -17,21 +17,25 @@ def add_sample_data():
     sample_students = [
         Student(
             student_name='John Doe',
+            registration_number='24/U/0001',
             email='john.doe@university.edu',
             programme='Computer Science'
         ),
         Student(
             student_name='Jane Smith',
+            registration_number='24/U/0002',
             email='jane.smith@university.edu',
             programme='Information Technology'
         ),
         Student(
             student_name='Alice Johnson',
+            registration_number='24/U/0003',
             email='alice.johnson@university.edu',
             programme='Mathematics'
         ),
         Student(
             student_name='Bob Brown',
+            registration_number='24/U/0004',
             email='bob.brown@university.edu',
             programme='Physics'
         )
@@ -57,12 +61,19 @@ def add_student(student_data):
         if existing:
             return False, "Student name already exists!", None
 
+        existing_registration_number = Student.query.filter_by(
+            registration_number=student_data['registration_number']
+        ).first()
+        if existing_registration_number:
+            return False, "Registration number already registered!", None
+
         existing_email = Student.query.filter_by(email=student_data['email']).first()
         if existing_email:
             return False, "Email already registered!", None
 
         new_student = Student(
             student_name=student_data['student_name'],
+            registration_number=student_data['registration_number'],
             email=student_data['email'],
             programme=student_data['programme']
         )

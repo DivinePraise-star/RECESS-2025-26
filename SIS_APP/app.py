@@ -23,6 +23,7 @@ def register():
     if request.method == 'POST':
         student_data = {
             'student_name': request.form.get('student_name', '').strip(),
+            'registration_number': request.form.get('registration_number', '').strip(),
             'email': request.form.get('email', '').strip(),
             'programme': request.form.get('programme', '').strip()
         }
